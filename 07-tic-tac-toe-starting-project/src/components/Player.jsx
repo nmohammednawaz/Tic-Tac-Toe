@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({initialPlayerName, playerSymbol, isActive}){
+export default function Player({initialPlayerName, playerSymbol, isActive, onChangeName}){
 
     // Initially Player name is not getting edited so false
     const [ isEditing, setIsEditing ] = useState(false);
@@ -11,6 +11,11 @@ export default function Player({initialPlayerName, playerSymbol, isActive}){
     // Function to update whether editing or saving
     function handleEditClick(){
         setIsEditing((editing)=> !editing);
+
+        if(isEditing){
+            onChangeName(playerSymbol, playerName);
+        }
+        
     }
 
     // Function to set the playerName from input
